@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CS50 Tic-Tac-Toe Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    body {
+        width: 500px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+     tr {
+        border-collapse: collapse;
+        border: 1px solid gray;
+     }
+     td {
+        background-color: cornflowerblue;
+        width: 100px;
+        height: 100px;
+        font-size: 20px;
+        font-weight: bold;
+     }
+     td img {
+         width: 40px;
+         height: 40px;
+     }
+    </style>
+</head>
+<body>
+    <h2>Welcome to Tic-Tac-Toe Game!</h2>
+    <h3>Made by Zvi-Mints</h3>
+    {% if not ans %}
+    <table align="center">
+    {% for i in range(3) %}
+        <tr>
+            {% for j in range(3) %}
+                <td>
+                    {% if game[i][j] == "X" %}
+                       <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/19-512.png"/>
+                    {% elif game[i][j] == "O" %}
+                        <img src="https://www.freeiconspng.com/uploads/letter-o-icon-png-8.png"/>
+                    {% else %}
+                        <a href="{{ url_for('play',row=i,col=j) }}">{{ turn }}</a>
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h1>{{ ans }}</h1>
+    {% endif %}
+    <a style="margin-top:10px" href="/clear" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Clear
+    </a>
+</body>
+</html>

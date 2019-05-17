@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>CS50 Tic-Tac-Toe Game</title>
+    <style>
+     tr {
+        border-collapse: collapse;
+        border: 1px solid gray;
+     }
+     td {
+        background-color: cornflowerblue;
+        width: 100px;
+        height: 100px;
+        font-size: 20px;
+        text-align: center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Tic-Tac-Toe Game!</h1>
+    <h3>Made by Zvi-Mints</h3>
+    <table>
+    {% for i in range(3)}
+        <tr>
+            {% for j in range(3)}
+                <td>
+                    {% if game[i][j] = %}
+                        This is cell
+                    {% else #}
+                        <a href="{{ url_for('index',row=i,col=j) }}">{{ turn }}</a>
+                    {% endif %}
+                </td>
+            {% endif %}
+        </tr>
+    {% endif %}
+    </table>
+</body>
+</html>
