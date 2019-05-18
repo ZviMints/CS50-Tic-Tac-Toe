@@ -1,0 +1,44 @@
+<!DOCTYLE html>
+<html len="en">
+    <head>
+        <title>Zvi-Mints Tic-Tac-Toe Game</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+                   body {
+                        font-family: Arial,Verdana,'sans serif';  
+                        text-align: center;
+                   }
+                    
+                    #content {
+                      width: 900px;
+                      margin-left: auto;
+                      margin-right: auto;
+                      resize: both;
+                      margin-top: 10px;
+                    }
+                 table {
+                     text-align: center;
+                     background-color: #fafafa;
+                     border: 1px solid gray;
+                 }
+                 tr {
+                    border-collapse: collapse;
+                 }
+                 td {
+                    width: 150px;
+                    height: 150px;
+                    font-size: 20px;
+                    font-weight: bold;
+                 }
+                 td img {
+                     width: 100px;
+                     height: 120px;
+                 }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+		  {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

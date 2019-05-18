@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>its {{ turn}} Turn!</h1>
+    <table align="center">
+    {% for i in range(3) %}
+        <tr>
+            {% for j in range(3) %}
+                <td>
+                    {% if game[i][j] == "Alice" %}
+                       <img src="http://www.transparentpng.com/thumb/alice/alice-png-7.png"/>
+                    {% elif game[i][j] == "Bob" %}
+                        <img src="http://pngriver.com/wp-content/uploads/2018/04/Download-Bob-PNG-Image.png"/>
+                    {% else %}
+                        <a href="{{ url_for('play',row=i,col=j) }}">{{ turn }}</a>
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+    <a style="margin-top:10px" href="/clear" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Clear
+    </a>
+    <a style="margin-top:10px" href="/help" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Damn! I Need Help!
+    </a>
+{% endblock %}
+
+
