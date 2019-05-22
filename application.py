@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
-import math 
+import math
 
 
 app = Flask(__name__)
@@ -24,10 +24,10 @@ def game():
         session["board"] = [[None,None,None],
                             [None,None, None],
                             [None,None, None]]
-        session["turn"] = "Alice"    
+        session["turn"] = "Alice"
     ans = CheckWinner(session["board"])
     if(ans[0] == True):
-        return render_template("finish.html",ans=f"{ans[1]} Player is Won!")
+        return render_template("finish.html",ans="{} Player is Won!".format(ans[1]))
     elif(ans[0] == False and ans[1] == "Draw"):
         return render_template("finish.html",ans="Its a Draw!")
     else:
@@ -35,7 +35,7 @@ def game():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
-    session["board"][row][col] = session["turn"] 
+    session["board"][row][col] = session["turn"]
     if session["turn"] == "Alice":
         session["turn"] = "Bob"
     else:
@@ -49,7 +49,7 @@ def clear():
                         [None,None, None]]
     session["turn"] = "Alice"
     return redirect(url_for("game"))
-    
+
 def CheckWinner(board): # [x,y] for x iff game is finished with winner and y = "Draw" if the game is draw, else, the winner (["Alice","Y"])
     # Checking the rows..
     for i in range(3):
@@ -75,23 +75,23 @@ def CheckWinner(board): # [x,y] for x iff game is finished with winner and y = "
      # Checking the diagonals..
     if(board[2][0] == board[1][1] and board[1][1] == board[0][2]):
          if(board[1][1] != None):
-             return [True, board[1][1]] 
+             return [True, board[1][1]]
 
     for i in range(3):
         for j in range(3):
             if(board[i][j] == None):
-                return [False, board[0][0]]  # Its Return somthing, never mind[1]. 
+                return [False, board[0][0]]  # Its Return somthing, never mind[1].
 
     # Its Draw!
     return [False, "Draw"]
-  
+
 @app.route("/help")
 def help():
     ans = minimax(session["board"],session["turn"])
     if ans[1] is not None:
         return redirect(url_for('play', row=ans[1][0], col=ans[1][1]))
-    
-    
+
+
 def minimax(board,turn):
     ans = CheckWinner(board)
     if(ans[0] == True and ans[1] == "Alice"):
@@ -125,7 +125,7 @@ def minimax(board,turn):
                     value = result
                     step = (i,j)
                 board[i][j] = None
-        return (value,step)    
+        return (value,step)
 
 if __name__ == '__main__':
     app.debug = True
